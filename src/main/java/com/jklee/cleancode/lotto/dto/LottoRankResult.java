@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LottoRankResult {
-	private String rank;
+	private Integer rank;
 	private Integer winningCount;
 }

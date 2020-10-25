@@ -1,22 +1,33 @@
 package com.jklee.cleancode.lotto.dto;
 
-import com.jklee.cleancode.lotto.exception.LottoException;
+import com.jklee.cleancode.lotto.util.LottoUtils;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Getter
 @Builder(builderMethodName = "lottoNumberBuilder")
 @NoArgsConstructor
 @AllArgsConstructor
 public class LottoNumber {
-	List<String> lottoNumber;
+	List<Integer> lottoNumber;
 
-	public void numberValidator() {
-		if (this.lottoNumber == null || this.lottoNumber.size() != 6) {
-			throw new LottoException("로또 번호가 올바르지 않습니다.");
-		}
+	public LottoNumber lottoBuilderManual(
+			@NonNull List<Integer> lottoNumber
+	) {
+		LottoUtils.numberValidator(lottoNumber);
+
+		return LottoNumber.lottoNumberBuilder().lottoNumber(lottoNumber).build();
+	}
+
+	public LottoNumber lottoBuilderAuto() {
+		return LottoNumber.lottoNumberBuilder()
+				.lottoNumber(
+						LottoUtils.generateNumber()
+				)
+				.build();
 	}
 }

@@ -1,14 +1,11 @@
 package com.jklee.cleancode.lotto.dto;
 
 import com.jklee.cleancode.lotto.exception.LottoException;
-import com.jklee.cleancode.lotto.util.LottoUtils;
-import java.util.Collections;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 @Getter
 @Builder(builderMethodName = "lottoResultBuilder")
@@ -26,25 +23,5 @@ public class LottoResult {
 	public void updateNumber(List<LottoNumber> lottoNumbers) {
 		this.numbersValidator();
 		this.lottoNumbers.addAll(lottoNumbers);
-	}
-
-	public LottoResult lottoBuilderManual(
-			@NonNull LottoNumber lottoNumber
-	) {
-		lottoNumber.numberValidator();
-
-		return LottoResult.lottoResultBuilder()
-				.lottoNumbers(Collections.singletonList(lottoNumber))
-				.build();
-	}
-
-	public LottoResult lottoBuilderAuto() {
-		return LottoResult.lottoResultBuilder()
-				.lottoNumbers(
-						Collections.singletonList(
-								LottoUtils.generateNumber()
-						)
-				)
-				.build();
 	}
 }
