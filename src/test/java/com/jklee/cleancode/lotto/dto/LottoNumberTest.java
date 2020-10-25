@@ -25,6 +25,8 @@ class LottoNumberTest {
 	@Test
 	public void lottoNumberValidationTest() {
 		LottoUtils.numberValidator(LottoUtils.generateNumber());
+		// 실패해야 정상, 추후 매끄럽게 바꿀 예정
+		// try/catch 로 잡아도 실패처리 되려나?
 		LottoUtils.numberValidator(Collections.singletonList(1));
 	}
 }

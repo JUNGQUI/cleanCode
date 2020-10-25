@@ -29,5 +29,6 @@ public class LottoNumber {
 						LottoUtils.generateNumber()
 				)
 				.build();
+
 	}
 }
