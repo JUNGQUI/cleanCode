@@ -30,7 +30,8 @@ public class LottoUtils {
 		int match = 0;
 
 		for (int i = 0; i < 6; i++) {
-			if (week.getLottoNumber().get(i).equals(request.getLottoNumber().get(0))) {
+			if (week.getLottoNumber().get(i).equals(
+					request.getLottoNumber().get(i))) {
 				match++;
 			}
 		}
