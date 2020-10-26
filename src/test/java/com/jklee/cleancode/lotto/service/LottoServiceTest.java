@@ -34,7 +34,6 @@ class LottoServiceTest {
 				.build();
 
 		LottoRankResultResponse lottoRankResultResponse = lottoService.checkLottos(lottoResult);
-
 		System.out.println("J Tag");
 	}
 }
