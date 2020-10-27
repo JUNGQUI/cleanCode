@@ -1,7 +1,6 @@
 package com.jklee.cleancode.lotto.service;
 
 import com.jklee.cleancode.lotto.dto.LottoNumber;
-import com.jklee.cleancode.lotto.dto.LottoRankResult;
 import com.jklee.cleancode.lotto.dto.LottoRankResultResponse;
 import com.jklee.cleancode.lotto.dto.LottoResult;
 import com.jklee.cleancode.lotto.util.LottoUtils;
