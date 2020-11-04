@@ -2,12 +2,15 @@ package com.jklee.cleancode.tdd;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -42,8 +45,15 @@ public class JKSetTest {
 
 	@DisplayName("set 으로 전달받은 값이 있는지 확인하라.")
 	@ParameterizedTest
-	@CsvSource(value = {"test:test", "tEst:test", "Java:java"}, delimiter = ':')
-	public boolean setContainsValueByParam(String input, String input_2) {
+	@MethodSource("generateData")
+	public boolean setContainsValueWithParam(Integer first, Integer second, Integer third) {
 		return true;
+	}
+
+	static Stream<Arguments> generateData() {
+		return Stream.of(
+				Arguments.of(1, 2, 3),
+				Arguments.of(4, 5)
+		);
 	}
 }
