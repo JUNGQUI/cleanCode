@@ -14,7 +14,9 @@ class StringCalculatorTest {
 	@Test
 	public void testCalculator() {
 		int result = stringCalculator.calculator("2 + 3 * 4 / 2");
-
 		Assertions.assertEquals(10, result);
+
+		result = stringCalculator.calculator("5 + 1 * 4 / 2");
+		Assertions.assertEquals(12, result);
 	}
 }
