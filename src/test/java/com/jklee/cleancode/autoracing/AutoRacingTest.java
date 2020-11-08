@@ -12,6 +12,7 @@ class AutoRacingTest {
 	@Test
 	public void auto() {
 		autoRacing.autoRacing(3, 5);
+		autoRacing.autoRacing(5, 10);
 	}
 
 }
