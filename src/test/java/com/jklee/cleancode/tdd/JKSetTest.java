@@ -1,6 +1,8 @@
 package com.jklee.cleancode.tdd;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
@@ -43,11 +45,20 @@ public class JKSetTest {
 		Assertions.assertTrue(numbers.contains(input));
 	}
 
+//	@MethodSource("generateData")
 	@DisplayName("set 으로 전달받은 값이 있는지 확인하라.")
 	@ParameterizedTest
-	@MethodSource("generateData")
-	public boolean setContainsValueWithParam(Integer first, Integer second, Integer third) {
-		return true;
+	@CsvSource(value = {"1,2,3", "4,5,"}, delimiter = ',')
+	public void setContainsValueWithParam(
+			Integer first,
+			Integer second,
+			Integer third) {
+		List<Integer> inputs = new ArrayList<>();
+		inputs.add(first);
+		inputs.add(second);
+		inputs.add(third);
+
+		Assertions.assertTrue(numbers.containsAll(inputs));
 	}
 
 	static Stream<Arguments> generateData() {
