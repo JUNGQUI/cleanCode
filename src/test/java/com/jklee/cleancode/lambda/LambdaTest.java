@@ -6,7 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class LambdaTest {
-	// TODO : 이동() 과 정지() 를 lambda 식으로 한큐에 돌게 만들기
 
 	@Test
 	public void 이동() {
@@ -18,6 +17,11 @@ public class LambdaTest {
 			}
 		});
 		Assertions.assertEquals(new Car("pobi", 1), actual);
+
+		Car carWithLambda = new Car("pobi", 0);
+		carWithLambda.move(() -> true);
+
+		Assertions.assertEquals(new Car("pobi", 1), carWithLambda);
 	}
 
 	@Test
@@ -30,5 +34,10 @@ public class LambdaTest {
 			}
 		});
 		Assertions.assertEquals(new Car("pobi", 0), actual);
+
+		Car carWithLambda = new Car("pobi", 0);
+		carWithLambda.move(() -> false);
+
+		Assertions.assertEquals(new Car("pobi", 0), carWithLambda);
 	}
 }

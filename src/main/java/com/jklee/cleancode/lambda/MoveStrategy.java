@@ -1,6 +1,6 @@
 package com.jklee.cleancode.lambda;
 
-public abstract class MoveStrategy {
+public interface MoveStrategy {
 
-	public abstract boolean isMovable();
+	boolean isMovable();
 }
