@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class LambdaTest {
+	// TODO : 이동() 과 정지() 를 lambda 식으로 한큐에 돌게 만들기
 
 	@Test
 	public void 이동() {
