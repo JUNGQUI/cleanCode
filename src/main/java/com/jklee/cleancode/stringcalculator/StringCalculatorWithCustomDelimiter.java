@@ -1,6 +1,5 @@
 package com.jklee.cleancode.stringcalculator;
 
-import java.util.List;
 import java.util.regex.Pattern;
 import org.springframework.stereotype.Component;
 
@@ -18,19 +17,18 @@ public class StringCalculatorWithCustomDelimiter {
 		String[] StringNumbers = needCalculate.split(delimiter);
 
 		for (String stringNumber : StringNumbers) {
-			if (!validateNumber(stringNumber)) {
-				throw new IllegalArgumentException();
-			}
-
+			validateNumber(stringNumber);
 			result += Integer.parseInt(stringNumber);
 		}
 
 		System.out.println(result);
 	}
 
-	private boolean validateNumber(String stringNumber) {
-		return !stringNumber.contains("-")
-				&& Pattern.matches("^(0|[1-9][0-9]*)$", stringNumber);
+	private void validateNumber(String stringNumber) {
+		if (stringNumber.contains("-")
+				|| !Pattern.matches("^(0|[1-9][0-9]*)$", stringNumber)) {
+			throw new RuntimeException("올바르지 않은 값입니다.");
+		}
 	}
 
 	private String refineString (String stringNumbers, String delimiter) {
@@ -40,7 +38,7 @@ public class StringCalculatorWithCustomDelimiter {
 	}
 
 	private CustomDelimiter customDelimiter (String pattern) {
-		if (Pattern.matches("//(.)\\n(.*)", pattern)) {
+		if (Pattern.matches("//(.) (.*)", pattern)) {
 			return CustomDelimiter.builder()
 					.custom(true)
 					.delimiter(
