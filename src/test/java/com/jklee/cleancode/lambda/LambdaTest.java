@@ -24,7 +24,7 @@ public class LambdaTest {
 		return total;
 	}
 
-	\int sumAllEven(List<Integer> numbers) {
+	int sumAllEven(List<Integer> numbers) {
 		int total = 0;
 		for (int number : numbers) {
 			if (number % 2 == 0) {
