@@ -11,10 +11,52 @@ public class LambdaTest {
 
 	List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
-	// 람다 만들기
-//	int sumAllLambda(List<Integer> numbers) {
-//		return numbers.forEach();
-//	}
+	@Test
+	void 이동() {
+		Car car = new Car("pobi", 0);
+		Car actual = car.move(new MoveStrategy() {
+			@Override
+			public boolean isMovable() {
+				return true;
+			}
+		});
+		Assertions.assertEquals(new Car("pobi", 1), actual);
+
+		Car carWithLambda = new Car("pobi", 0);
+		carWithLambda.move(() -> true);
+
+		Assertions.assertEquals(new Car("pobi", 1), carWithLambda);
+	}
+
+	@Test
+	void 정지() {
+		Car car = new Car("pobi", 0);
+		Car actual = car.move(new MoveStrategy() {
+			@Override
+			public boolean isMovable() {
+				return false;
+			}
+		});
+		Assertions.assertEquals(new Car("pobi", 0), actual);
+
+		Car carWithLambda = new Car("pobi", 0);
+		carWithLambda.move(() -> false);
+
+		Assertions.assertEquals(new Car("pobi", 0), carWithLambda);
+	}
+
+	@Test
+	void sumTest() {
+		Assertions.assertEquals(
+				sumAll(numbers),
+				sumAllForLambda(numbers, number -> true)
+		);
+
+		Assertions.assertEquals(
+				sumAllEven(numbers),
+				sumAllForLambda(numbers, number -> number % 2 == 0)
+		);
+	}
 
 	int sumAll(List<Integer> numbers) {
 		int total = 0;
@@ -34,37 +76,10 @@ public class LambdaTest {
 		return total;
 	}
 
-	@Test
-	public void 이동() {
-		Car car = new Car("pobi", 0);
-		Car actual = car.move(new MoveStrategy() {
-			@Override
-			public boolean isMovable() {
-				return true;
-			}
-		});
-		Assertions.assertEquals(new Car("pobi", 1), actual);
-
-		Car carWithLambda = new Car("pobi", 0);
-		carWithLambda.move(() -> true);
-
-		Assertions.assertEquals(new Car("pobi", 1), carWithLambda);
-	}
-
-	@Test
-	public void 정지() {
-		Car car = new Car("pobi", 0);
-		Car actual = car.move(new MoveStrategy() {
-			@Override
-			public boolean isMovable() {
-				return false;
-			}
-		});
-		Assertions.assertEquals(new Car("pobi", 0), actual);
-
-		Car carWithLambda = new Car("pobi", 0);
-		carWithLambda.move(() -> false);
-
-		Assertions.assertEquals(new Car("pobi", 0), carWithLambda);
+	int sumAllForLambda(List<Integer> numbers, Conditional conditional) {
+		return numbers.stream()
+				.filter(conditional::test)
+				.mapToInt(number -> number)
+				.sum();
 	}
 }
