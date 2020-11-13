@@ -9,9 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class LambdaTest {
 
-	// nextstep.fp.Lambda의 sumAll method
 	List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
+	// 람다 만들기
 //	int sumAllLambda(List<Integer> numbers) {
 //		return numbers.forEach();
 //	}
