@@ -1,26 +1,32 @@
 package com.jklee.cleancode.optional;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
-@Data @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class Users {
-	private String name;
-	private int age;
+	static final User DEFAULT_USER = new User("codesquad", 100);
 
-	public Users getUser(String name) {
-		return Users.builder()
-				.name(name)
-				.age(35)
-				.build();
+	List<User> users = Arrays.asList(
+			new User("crong", 35),
+			new User("pobi", 30),
+			new User("jk", 40),
+			new User("honux", 45));
+
+	User getUser(String name) {
+		for (User user : users) {
+			if (user.matchName(name)) {
+				return user;
+			}
+		}
+		return DEFAULT_USER;
 	}
 
-	public static final Users DEFAULT_USER = Users.builder()
-			.name("codesquard")
-			.age(30)
-			.build();
+	User getUserWithOptional(String name) {
+		return users.stream()
+				.map(user -> user.matchName(name) ? user : null)
+				.filter(Objects::nonNull)
+				.findFirst()
+				.orElse(DEFAULT_USER);
+	}
 }
