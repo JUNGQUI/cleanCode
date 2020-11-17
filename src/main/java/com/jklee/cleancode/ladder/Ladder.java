@@ -32,8 +32,8 @@ public class Ladder {
 		List<String> results = new ArrayList<>();
 
 		List<String> ladderBone = Arrays.stream(
-				"| ".repeat(name.size())
-						.split(" "))
+				"|,".repeat(name.size())
+						.split(","))
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
 
@@ -53,25 +53,24 @@ public class Ladder {
 		Random random = new Random();
 
 		return reformatting(
-				String.valueOf(
-						inputs.stream()
-								.map(
-										input -> {
-											int remainLength = maxLength - input.length();
+				String.valueOf(inputs.stream()
+						.map(
+								input -> {
+									int remainLength = maxLength - input.length() + 1;
 
-											if (flag.get()) {
-												flag.set(false);
-												return " ".repeat(remainLength) + input;
-											}
+									if (flag.get()) {
+										flag.set(false);
+										return " ".repeat(remainLength) + input;
+									}
 
-											if (random.nextInt(100) % 2 == 0) {
-												flag.set(true);
-												return "-".repeat(remainLength) + input;
-											}
+									if (random.nextInt(100) % 2 == 0) {
+										flag.set(true);
+										return "-".repeat(remainLength) + input;
+									}
 
-											return " ".repeat(remainLength) + input;
-										})
-								.collect(Collectors.toList())
+									return " ".repeat(remainLength) + input;
+								})
+						.collect(Collectors.toList())
 				)
 		);
 	}
@@ -81,7 +80,7 @@ public class Ladder {
 				String.valueOf(inputs.stream()
 						.map(
 								input -> {
-									int remainLength = maxLength - input.length();
+									int remainLength = maxLength - input.length() + 1;
 									return " ".repeat(remainLength) + input;
 								})
 						.collect(Collectors.toList())
@@ -99,7 +98,7 @@ public class Ladder {
 		return needReform
 				.replace("[", "")
 				.replace("]", "")
-				.replace(",", "");
+				.replace(", ", "");
 	}
 
 }
