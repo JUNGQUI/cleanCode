@@ -46,6 +46,21 @@ public class Ladder {
 		return idx;
 	}
 
+	public List<LadderLine> makeLadderRefactoring(int peoples, int count) {
+		List<LadderLine> ladderLines = new ArrayList<>();
+
+		for (int i = 0; i < count; i++) {
+			ladderLines.add(LadderLine.init(peoples));
+		}
+
+		return ladderLines;
+	}
+
+	public String playLadderRefactoring(String condition, List<String> peoples, List<String> result, List<LadderLine> ladder) {
+
+		return null;
+	}
+
 	List<String> ladderBuilder(List<String> name, List<String> result, int maxLength, int count) {
 		List<String> results = new ArrayList<>();
 
@@ -144,12 +159,6 @@ public class Ladder {
 						.collect(Collectors.toList())
 				)
 		);
-	}
-
-	List<String> peopleSeparator(String people) {
-		return Arrays.stream(people.split(","))
-				.map(name -> name.replace(",", ""))
-				.collect(Collectors.toList());
 	}
 
 	String reformatting(String needReform) {

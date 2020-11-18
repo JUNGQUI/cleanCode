@@ -61,4 +61,15 @@ class LadderTest {
 						ladderResult)
 		);
 	}
+
+	@Test
+	void LadderLineInit() {
+		List<LadderLine> ladderLines = new ArrayList<>();
+
+		for (int i = 0; i < 15; i++) {
+			ladderLines.add(LadderLine.init(peoples.size()));
+		}
+
+		System.out.println("J Tag");
+	}
 }
