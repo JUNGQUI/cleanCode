@@ -21,11 +21,15 @@ class LadderTest {
 		peoples.add("JK");
 		peoples.add("Crong");
 		peoples.add("Meai");
+		peoples.add("Boris");
+		peoples.add("Loch");
 
 		results.add("1등");
 		results.add("2등");
 		results.add("3등");
 		results.add("4등");
+		results.add("5등");
+		results.add("6등");
 	}
 
 	@Test
@@ -64,13 +68,17 @@ class LadderTest {
 
 	@Test
 	void LadderLineInit() {
+		int count = 15;
+		int maxLength = peoples.stream()
+				.map(String::length)
+				.max(Integer::compareTo)
+				.orElseThrow();
 		List<LadderLine> ladderLines = new ArrayList<>();
 
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < count; i++) {
 			ladderLines.add(LadderLine.init(peoples.size()));
 		}
-
-		System.out.println("J Tag");
+		ladder.ladderBuilderRefactoring(peoples, results, ladderLines, maxLength, count);
 	}
 
 	@Test
@@ -88,7 +96,6 @@ class LadderTest {
 		System.out.println(
 				ladder.playLadderRefactoring("all", peoples, results, ladderLines)
 		);
-
 
 		System.out.println(
 				ladder.playLadderRefactoring("poo", peoples, results, ladderLines)
