@@ -57,7 +57,6 @@ public class Ladder {
 	}
 
 	public String playLadderRefactoring(String condition, List<String> peoples, List<String> result, List<LadderLine> ladder) {
-
 		return null;
 	}
 
