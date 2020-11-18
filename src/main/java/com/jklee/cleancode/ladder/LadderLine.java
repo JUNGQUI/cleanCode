@@ -4,7 +4,9 @@ import static com.jklee.cleancode.ladder.LadderUtil.generatePoint;
 
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Data;
 
+@Data
 public class LadderLine {
 	private final List<Point> points;
 

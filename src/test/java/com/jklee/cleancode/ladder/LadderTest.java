@@ -61,4 +61,37 @@ class LadderTest {
 						ladderResult)
 		);
 	}
+
+	@Test
+	void LadderLineInit() {
+		List<LadderLine> ladderLines = new ArrayList<>();
+
+		for (int i = 0; i < 15; i++) {
+			ladderLines.add(LadderLine.init(peoples.size()));
+		}
+
+		System.out.println("J Tag");
+	}
+
+	@Test
+	void LadderLineTest() {
+		int count = 15;
+		int maxLength = peoples.stream()
+				.map(String::length)
+				.max(Integer::compareTo)
+				.orElseThrow();
+
+		List<LadderLine> ladderLines = ladder.makeLadderRefactoring(peoples.size(), count);;
+
+		ladder.ladderBuilderRefactoring(peoples, results, ladderLines, maxLength, count);
+
+		System.out.println(
+				ladder.playLadderRefactoring("all", peoples, results, ladderLines)
+		);
+
+
+		System.out.println(
+				ladder.playLadderRefactoring("poo", peoples, results, ladderLines)
+		);
+	}
 }

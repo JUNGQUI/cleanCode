@@ -1,5 +1,8 @@
 package com.jklee.cleancode.ladder;
 
+import lombok.Data;
+
+@Data
 public class Point {
 	private final int index;
 	private final Direction direction;
