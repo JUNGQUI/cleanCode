@@ -34,6 +34,26 @@ public class Ladder {
 		return result.get(forwardLadder(ladder, idx));
 	}
 
+	public List<LadderLine> makeLadderRefactoring(int peoples, int count) {
+		List<LadderLine> ladderLines = new ArrayList<>();
+
+		for (int i = 0; i < count; i++) {
+			ladderLines.add(LadderLine.init(peoples));
+		}
+
+		return ladderLines;
+	}
+
+	public String playLadderRefactoring(String condition, List<String> peoples, List<String> result, List<LadderLine> ladder) {
+		int idx = findIndex(condition, peoples);
+
+		if ("all".equals(condition)) {
+			return forwardLadderAllRefactoring(ladder, peoples, result);
+		}
+
+		return condition + " : " + result.get(forwardLadderRefactoring(ladder, idx));
+	}
+
 	int findIndex(String condition, List<String> peoples) {
 		int idx = -1;
 		int i = 0;
@@ -46,18 +66,14 @@ public class Ladder {
 		return idx;
 	}
 
-	public List<LadderLine> makeLadderRefactoring(int peoples, int count) {
-		List<LadderLine> ladderLines = new ArrayList<>();
+	void ladderBuilderRefactoring(List<String> name, List<String> result, List<LadderLine> ladderBone, int maxLength, int count) {
+		System.out.println(ladderBuilderOnelineName(name, maxLength));
 
 		for (int i = 0; i < count; i++) {
-			ladderLines.add(LadderLine.init(peoples));
+			System.out.println(ladderBuilderOneline(ladderBone.get(i), maxLength));
 		}
 
-		return ladderLines;
-	}
-
-	public String playLadderRefactoring(String condition, List<String> peoples, List<String> result, List<LadderLine> ladder) {
-		return null;
+		System.out.println(ladderBuilderOnelineName(result, maxLength));
 	}
 
 	List<String> ladderBuilder(List<String> name, List<String> result, int maxLength, int count) {
@@ -89,13 +105,42 @@ public class Ladder {
 				String.valueOf(
 						peoples.stream()
 								.map(people -> {
-									String result = people + " : " + results.get(forwardLadder(ladders, i.get())) + " ";
+									String result = people + " : "
+											+ results.get(
+													forwardLadder(ladders, i.get())
+									)
+											+ " ";
+
 									i.getAndIncrement();
+
 									return result;
 								})
 								.collect(Collectors.toList())
 				)
 		);
+	}
+
+	String forwardLadderAllRefactoring(List<LadderLine> ladders, List<String> peoples, List<String> result) {
+		StringBuilder resultBuilder = new StringBuilder();
+
+		for (int i = 0; i < peoples.size(); i++) {
+			resultBuilder.append(peoples.get(i))
+					.append(" : ")
+					.append(result.get(
+							forwardLadderRefactoring(ladders, i)
+					))
+					.append(" ");
+		}
+
+		return resultBuilder.toString();
+	}
+
+	int forwardLadderRefactoring(List<LadderLine> ladders, int index) {
+		for (LadderLine ladder : ladders) {
+			index = ladder.move(index);
+		}
+
+		return index;
 	}
 
 	int forwardLadder(List<String> ladders, int index) {
@@ -118,6 +163,18 @@ public class Ladder {
 				? startIdx - 1
 				: rightLadder.contains("-")
 						? startIdx + 1 : startIdx;
+	}
+
+	String ladderBuilderOneline(LadderLine ladderLine, int maxLength) {
+		StringBuilder result = new StringBuilder();
+
+		for (Point point : ladderLine.getPoints()) {
+			result.append(point.getDirection().isLeft()
+					? "-".repeat(maxLength) + "|"
+					: " ".repeat(maxLength) + "|");
+		}
+
+		return result.toString();
 	}
 
 	String ladderBuilderOneline(List<String> inputs, int maxLength) {
