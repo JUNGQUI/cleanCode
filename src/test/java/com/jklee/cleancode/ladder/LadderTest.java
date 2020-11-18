@@ -97,7 +97,6 @@ class LadderTest {
 				ladder.playLadderRefactoring("all", peoples, results, ladderLines)
 		);
 
-
 		System.out.println(
 				ladder.playLadderRefactoring("poo", peoples, results, ladderLines)
 		);
