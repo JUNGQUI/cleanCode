@@ -11,9 +11,14 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Where;
 
-@Entity
+@Builder @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Question extends AbstractEntity {
 	@Column(length = 100, nullable = false)
 	private String title;
@@ -31,9 +36,6 @@ public class Question extends AbstractEntity {
 	private List<Answer> answers = new ArrayList<>();
 
 	private boolean deleted = false;
-
-	public Question() {
-	}
 
 	public Question(String title, String contents) {
 		this.title = title;

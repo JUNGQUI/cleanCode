@@ -40,6 +40,39 @@ public class QnAService {
 	@Transactional
 	public void deleteQuestion(User loginUser, long questionId) throws CannotDeleteException {
 		Question question = findQuestionById(questionId);
+		List<Answer> answers = checkDeletePrivilege(question, loginUser);
+
+		delete(question, answers);
+	}
+
+	@Transactional
+	public void delete(Question question, List<Answer> answers) {
+		List<DeleteHistory> deleteHistories = new ArrayList<>();
+
+		question.setDeleted(true);
+		deleteHistories.add(
+				new DeleteHistory(
+						ContentType.QUESTION,
+						question.getId(),
+						question.getWriter(),
+						LocalDateTime.now())
+		);
+
+		for (Answer answer : answers) {
+			answer.setDeleted(true);
+			deleteHistories.add(
+					new DeleteHistory(
+							ContentType.ANSWER,
+							answer.getId(),
+							answer.getWriter(),
+							LocalDateTime.now())
+			);
+		}
+
+		deleteHistoryService.saveAll(deleteHistories);
+	}
+
+	public List<Answer> checkDeletePrivilege(Question question, User loginUser) throws CannotDeleteException {
 		if (!question.isOwner(loginUser)) {
 			throw new CannotDeleteException("질문을 삭제할 권한이 없습니다.");
 		}
@@ -51,13 +84,6 @@ public class QnAService {
 			}
 		}
 
-		List<DeleteHistory> deleteHistories = new ArrayList<>();
-		question.setDeleted(true);
-		deleteHistories.add(new DeleteHistory(ContentType.QUESTION, questionId, question.getWriter(), LocalDateTime.now()));
-		for (Answer answer : answers) {
-			answer.setDeleted(true);
-			deleteHistories.add(new DeleteHistory(ContentType.ANSWER, answer.getId(), answer.getWriter(), LocalDateTime.now()));
-		}
-		deleteHistoryService.saveAll(deleteHistories);
+		return answers;
 	}
 }
