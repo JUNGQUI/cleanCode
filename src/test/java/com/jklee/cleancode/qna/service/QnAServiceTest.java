@@ -105,7 +105,13 @@ class QnAServiceTest {
 
 	@Test
 	void delete() {
+		qnAService.delete(question, answersByUser_1);
 
+		Assertions.assertTrue(question.isDeleted());
+
+		for (Answer answer : answersByUser_1) {
+			Assertions.assertTrue(answer.isDeleted());
+		}
 	}
 
 	@Test
