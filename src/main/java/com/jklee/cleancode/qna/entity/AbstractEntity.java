@@ -19,7 +19,7 @@ public class AbstractEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, updatable = false)
+//	@Column(nullable = false, updatable = false)
 	@CreatedDate
 	private LocalDateTime createdAt;
 

@@ -4,8 +4,13 @@ import com.jklee.cleancode.qna.exception.UnAuthorizedException;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
-@Entity
+@Builder @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class User extends AbstractEntity {
 	public static final GuestUser GUEST_USER = new GuestUser();
 
@@ -19,13 +24,6 @@ public class User extends AbstractEntity {
 	private String name;
 
 	private String email;
-
-	public User() {
-	}
-
-	public User(String userId, String password, String name, String email) {
-		this(null, userId, password, name, email);
-	}
 
 	public User(Long id, String userId, String password, String name, String email) {
 		super(id);

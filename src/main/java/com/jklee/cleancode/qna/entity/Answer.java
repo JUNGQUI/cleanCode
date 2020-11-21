@@ -7,8 +7,13 @@ import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
-@Entity
+@Builder @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Answer extends AbstractEntity {
 	@ManyToOne(optional = false)
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_answer_writer"))
@@ -22,9 +27,6 @@ public class Answer extends AbstractEntity {
 	private String contents;
 
 	private boolean deleted = false;
-
-	public Answer() {
-	}
 
 	public Answer(User writer, Question question, String contents) {
 		this(null, writer, question, contents);
