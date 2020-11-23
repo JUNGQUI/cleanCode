@@ -36,7 +36,6 @@ public class BowlingPoint {
 						: (firstPoint == 0 ? "-" : firstPoint)
 								+ "|"
 								+ (secondPoint == 0 ? "-" : secondPoint);
-
 	}
 
 	public BowlingStatus getStatus() {

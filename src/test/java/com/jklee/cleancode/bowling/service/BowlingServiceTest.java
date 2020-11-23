@@ -1,6 +1,7 @@
 package com.jklee.cleancode.bowling.service;
 
 import com.jklee.cleancode.bowling.BowlingPoint;
+import com.jklee.cleancode.bowling.Frame;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -79,5 +80,10 @@ class BowlingServiceTest {
 	void drawTableTest() {
 		bowlingService.drawTable("LJK", bowlingPoints);
 		bowlingService.drawTable("LJK", bowlingPoints11Frame);
+	}
+
+	@Test
+	void getScoreTest() {
+		Frame frame = new Frame();
 	}
 }
