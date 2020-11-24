@@ -26,6 +26,7 @@ public class Answer extends AbstractEntity {
 	@Lob
 	private String contents;
 
+	@Builder.Default
 	private boolean deleted = false;
 
 	public Answer(User writer, Question question, String contents) {

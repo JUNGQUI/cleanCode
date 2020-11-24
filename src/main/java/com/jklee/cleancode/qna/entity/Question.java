@@ -33,8 +33,10 @@ public class Question extends AbstractEntity {
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
 	@Where(clause = "deleted = false")
 	@OrderBy("id ASC")
+	@Builder.Default
 	private List<Answer> answers = new ArrayList<>();
 
+	@Builder.Default
 	private boolean deleted = false;
 
 	public Question(String title, String contents) {
