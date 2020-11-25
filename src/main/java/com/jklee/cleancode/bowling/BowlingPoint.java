@@ -28,6 +28,14 @@ public class BowlingPoint {
 				.bowlingStatus(bowlingStatus);
 	}
 
+	public int getFirstScore() {
+		return this.firstPoint;
+	}
+
+	public int getSecondScore() {
+		return this.secondPoint;
+	}
+
 	public String getPoint() {
 		return firstPoint == 10
 				? "X"
