@@ -19,6 +19,14 @@ public class Frame {
 		this.frameNumber = frameNumber;
 	}
 
+	public int totalScore() {
+		if (this.nextFrame == null) {
+			return score.getScore();
+		}
+
+		return score.getScore() + this.nextFrame.totalScore();
+	}
+
 	public void bowling(int point) {
 		if (this.score == null) {
 			this.score = Score.init(point);
@@ -29,12 +37,6 @@ public class Frame {
 
 		if (!result) {
 			this.nextFrame = setNextFrame(this.nextFrame, point);
-//			if (this.nextFrame == null) {
-//				this.nextFrame = new Frame(this.frameNumber+1);
-//				this.nextFrame.prevFrame = this;
-//			}
-//
-//			this.nextFrame.bowling(point);
 		}
 	}
 

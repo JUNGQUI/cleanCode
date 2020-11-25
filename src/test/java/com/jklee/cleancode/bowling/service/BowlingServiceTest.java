@@ -1,6 +1,7 @@
 package com.jklee.cleancode.bowling.service;
 
 import com.jklee.cleancode.bowling.BowlingPoint;
+import com.jklee.cleancode.bowling.BowlingStatus;
 import com.jklee.cleancode.bowling.refactoring.Frame;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +84,24 @@ class BowlingServiceTest {
 	}
 
 	@Test
-	void getScoreTest() {
-		Frame frame = new Frame();
+	void scoreTest() {
+		bowlingService.drawTable("LJK", bowlingPoints);
+		bowlingService.drawTable("LJK", bowlingPoints11Frame);
+
+		Frame frame = new Frame(1);
+		Frame frame11 = new Frame(1);
+
+		for (BowlingPoint point : bowlingPoints) {
+			frame.bowling(point.getFirstScore());
+			frame.bowling(point.getSecondScore());
+		}
+
+		for (BowlingPoint point : bowlingPoints11Frame) {
+			frame11.bowling(point.getFirstScore());
+			frame11.bowling(point.getSecondScore());
+		}
+
+		System.out.println(frame.totalScore());
+		System.out.println(frame11.totalScore());
 	}
 }
