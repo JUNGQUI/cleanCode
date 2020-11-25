@@ -1,7 +1,7 @@
 package com.jklee.cleancode.bowling.service;
 
 import com.jklee.cleancode.bowling.BowlingPoint;
-import com.jklee.cleancode.bowling.Frame;
+import com.jklee.cleancode.bowling.refactoring.Frame;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
