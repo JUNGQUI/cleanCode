@@ -72,9 +72,10 @@ public class DrawService {
 			return "";
 		}
 
-		return "  "
-				+ frame.getLegacyScore()
-				+ " ".repeat(4-String.valueOf(frame.getLegacyScore()).length())
-				+ "|";
+		return "";
+//		return "  "
+//				+ frame.getLegacyScore()
+//				+ " ".repeat(4-String.valueOf(frame.getLegacyScore()).length())
+//				+ "|";
 	}
 }
