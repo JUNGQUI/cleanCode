@@ -10,8 +10,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Score {
 	private int score;
+	private int legacyScore;
+
 	private int leftCount;
 	private int extraLeftCount;
+
 	private String pointSign;
 
 	public static Score init(int point) {
