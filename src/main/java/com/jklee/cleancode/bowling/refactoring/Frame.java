@@ -38,6 +38,8 @@ public class Frame {
 		if (!result) {
 			this.nextFrame = setNextFrame(this.nextFrame, point);
 		}
+
+		totalScore();
 	}
 
 	Frame setNextFrame(Frame frame, int point) {

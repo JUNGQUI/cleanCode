@@ -92,12 +92,16 @@ class DrawServiceTest {
 
 		for (BowlingPoint point : bowlingPoints) {
 			frame.bowling(point.getFirstScore());
+			drawService.drawTable("1fr", frame);
 			frame.bowling(point.getSecondScore());
+			drawService.drawTable("2fr", frame);
 		}
 
 		for (BowlingPoint point : bowlingPoints11Frame) {
 			frame11.bowling(point.getFirstScore());
+			drawService.drawTable("111", frame11);
 			frame11.bowling(point.getSecondScore());
+			drawService.drawTable("112", frame11);
 		}
 
 		System.out.println(frame.totalScore());

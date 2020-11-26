@@ -13,6 +13,12 @@ public class DrawService {
 		System.out.println(drawPoint(name, bowlingPoints));
 	}
 
+	public void drawTable(String name, Frame frame) {
+		System.out.println(drawHeader(FrameUtil.getLastStatus(frame)));
+		System.out.println("|  " + name + " |" + drawFrame(frame));
+		System.out.println("|  " + name + " |" + drawFrameScore(frame));
+	}
+
 	private String drawHeader(BowlingStatus bowlingStatus) {
 		String header = "| NAME |  01  |  02  |  03  |  04  |  05  |  06  |  07  |  08  |  09  |  10  |";
 
@@ -45,13 +51,30 @@ public class DrawService {
 		return content.toString();
 	}
 
-//	private String drawFrame(Frame frame) {
-//		StringBuilder content = new StringBuilder();
-//
-//		content.append("  ")
-//				.append()
-//
-//
-//		frame.getNextFrame();
-//	}
+	private String drawFrame(Frame frame) {
+		if (frame == null) {
+			return "";
+		}
+
+		return "  "
+				+ frame.getScore().getPointSign()
+				+ " ".repeat(
+				4 - frame.getScore()
+						.getPointSign()
+						.length()
+		)
+				+ "|"
+				+ drawFrame(frame.getNextFrame());
+	}
+
+	private String drawFrameScore(Frame frame) {
+		if (frame == null) {
+			return "";
+		}
+
+		return "  "
+				+ frame.getLegacyScore()
+				+ " ".repeat(4-String.valueOf(frame.getLegacyScore()).length())
+				+ "|";
+	}
 }
