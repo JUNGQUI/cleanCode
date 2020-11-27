@@ -7,6 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class BowlingServiceTest {
 	@Test
 	void fullTest() {
-
+		// TODO : full test 구현
 	}
 }
