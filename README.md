@@ -1,5 +1,5 @@
 # cleanCode
-clean code 를 지향하는 (안되더라도...) project
+clean code 를 지향하는 project
 
 
 # 대원칙
