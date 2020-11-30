@@ -29,6 +29,7 @@ public class BowlingServiceTest {
 				score = random.nextInt(11 - score);
 				frame_LJK.bowling(score);
 			}
+			drawService.drawTable("LJK", frame_LJK);
 		}
 
 		for (int i = 0; i < 10; i++) {
@@ -43,9 +44,8 @@ public class BowlingServiceTest {
 				score = random.nextInt(11 - score);
 				frame_BRS.bowling(score);
 			}
-		}
 
-		drawService.drawTable("LJK", frame_LJK);
-		drawService.drawTable("BRS", frame_BRS);
+			drawService.drawTable("BRS", frame_BRS);
+		}
 	}
 }
