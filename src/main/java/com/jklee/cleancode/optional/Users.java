@@ -2,7 +2,6 @@ package com.jklee.cleancode.optional;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public class Users {
 	static final User DEFAULT_USER = new User("codesquad", 100);
@@ -24,8 +23,7 @@ public class Users {
 
 	User getUserWithOptional(String name) {
 		return users.stream()
-				.map(user -> user.matchName(name) ? user : null)
-				.filter(Objects::nonNull)
+				.filter(user -> user.matchName(name))
 				.findFirst()
 				.orElse(DEFAULT_USER);
 	}

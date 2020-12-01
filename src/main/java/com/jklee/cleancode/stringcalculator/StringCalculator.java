@@ -7,28 +7,25 @@ import org.springframework.util.StringUtils;
 @Component
 public class StringCalculator {
 	public int calculator(String needCalculator) {
-		int prevVal = 0;
-		String sign = "";
-
 		if (!StringUtils.hasText(needCalculator)) {
 			throw new IllegalArgumentException();
 		}
 
-		for (String needCal : needCalculator.split(" ")) {
-			if (checkSign(needCal)) {
-				sign = needCal;
-				continue;
-			}
+		return calculateFrame(needCalculator.split(" "));
+	}
 
-			if (!StringUtils.hasText(sign)) {
-				prevVal = Integer.parseInt(needCal);
-				continue;
-			}
+	private int calculateFrame(String... needCalculate) {
+		String sign = "";
+		int result = initValue(needCalculate[0]);
 
-			prevVal = calculate(prevVal, Integer.parseInt(needCal), sign);
+		for (String needCal : needCalculate) {
+			sign = checkSign(needCal) ? needCal : sign;
+			result = !checkSign(needCal) && StringUtils.hasText(sign)
+					? calculate(result, Integer.parseInt(needCal), sign)
+					: result;
 		}
 
-		return prevVal;
+		return result;
 	}
 
 	private int calculate(int a, int b, String sign) {
@@ -43,6 +40,14 @@ public class StringCalculator {
 		}
 
 		throw new IllegalArgumentException();
+	}
+
+	private int initValue(String needCal) {
+		if (checkSign(needCal)) {
+			throw new IllegalArgumentException();
+		}
+
+		return Integer.parseInt(needCal);
 	}
 
 	private boolean checkSign(String needCheck) {

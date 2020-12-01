@@ -27,14 +27,7 @@ public class LottoUtils {
 	}
 
 	public LottoRankResult matchNumber (LottoNumber week, LottoNumber request) {
-		int match = 0;
-
-		for (int i = 0; i < 6; i++) {
-			if (week.getLottoNumber().get(i).equals(
-					request.getLottoNumber().get(i))) {
-				match++;
-			}
-		}
+		int match = getMatch(week, request);
 
 		if (ranking(match) == 0) {
 			return null;
@@ -44,6 +37,21 @@ public class LottoUtils {
 				.rank(ranking(match))
 				.winningCount(1)
 				.build();
+	}
+
+	private int getMatch(LottoNumber week, LottoNumber request) {
+		int match = 0;
+
+		for (int i = 0; i < 6; i++) {
+			match += week.getLottoNumber()
+					.get(i)
+					.equals(
+							request.getLottoNumber()
+									.get(i)
+					) ? 1 : 0;
+		}
+
+		return match;
 	}
 
 	public List<Integer> generateNumber() {
