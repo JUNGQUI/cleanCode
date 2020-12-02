@@ -10,25 +10,20 @@ import lombok.NonNull;
 
 @Getter
 @Builder(builderMethodName = "lottoNumberBuilder")
-@NoArgsConstructor
-@AllArgsConstructor
 public class LottoNumber {
 	List<Integer> lottoNumber;
+
+	public LottoNumber() {
+		this.lottoNumber = LottoUtils.generateNumber();
+	}
 
 	public LottoNumber lottoBuilderManual(
 			@NonNull List<Integer> lottoNumber
 	) {
 		LottoUtils.numberValidator(lottoNumber);
 
-		return LottoNumber.lottoNumberBuilder().lottoNumber(lottoNumber).build();
-	}
-
-	public LottoNumber lottoBuilderAuto() {
 		return LottoNumber.lottoNumberBuilder()
-				.lottoNumber(
-						LottoUtils.generateNumber()
-				)
+				.lottoNumber(lottoNumber)
 				.build();
-
 	}
 }
