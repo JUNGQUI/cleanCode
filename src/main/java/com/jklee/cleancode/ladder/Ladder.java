@@ -27,11 +27,9 @@ public class Ladder {
 	public String playLadder(String condition, List<String> peoples, List<String> result, List<String> ladder) {
 		int idx = findIndex(condition, peoples);
 
-		if ("all".equals(condition)) {
-			return forwardLadderForAll(ladder, peoples, result);
-		}
-
-		return result.get(forwardLadder(ladder, idx));
+		return "all".equals(condition)
+				? forwardLadderForAll(ladder, peoples, result)
+				: result.get(forwardLadder(ladder, idx));
 	}
 
 	public List<LadderLine> makeLadderRefactoring(int peoples, int count) {
@@ -47,11 +45,9 @@ public class Ladder {
 	public String playLadderRefactoring(String condition, List<String> peoples, List<String> result, List<LadderLine> ladder) {
 		int idx = findIndex(condition, peoples);
 
-		if ("all".equals(condition)) {
-			return forwardLadderAllRefactoring(ladder, peoples, result);
-		}
-
-		return condition + " : " + result.get(forwardLadderRefactoring(ladder, idx));
+		return "all".equals(condition)
+				? forwardLadderAllRefactoring(ladder, peoples, result)
+				: condition + " : " + result.get(forwardLadderRefactoring(ladder, idx));
 	}
 
 	int findIndex(String condition, List<String> peoples) {
