@@ -18,10 +18,7 @@ public class LottoService {
 		for (int i = 0; i < money; i++) {
 			lottoResult.updateNumber(
 					Collections.singletonList(
-							LottoNumber
-									.lottoNumberBuilder()
-									.build()
-									.lottoBuilderAuto()
+							new LottoNumber()
 					)
 			);
 		}
@@ -30,10 +27,7 @@ public class LottoService {
 	}
 
 	public LottoRankResultResponse checkLottos(LottoResult request) {
-		LottoNumber weekLottoNumber = LottoNumber
-				.lottoNumberBuilder()
-				.build()
-				.lottoBuilderAuto();
+		LottoNumber weekLottoNumber = new LottoNumber();
 		List<LottoRankResult> rankResults = new ArrayList<>();
 
 		for (LottoNumber lottoNumber : request.getLottoNumbers()) {
