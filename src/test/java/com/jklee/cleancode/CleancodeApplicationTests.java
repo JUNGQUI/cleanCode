@@ -22,8 +22,13 @@ class CleancodeApplicationTests {
 	@Test
 	void replaceTest() {
 		String number = "01012345678";
-
 		Assertions.assertEquals("+821012345678", number.replaceFirst("0", "+82"));
 		Assertions.assertEquals("+821+8212345678", number.replace("0", "+82"));
+	}
+
+	@Test
+	void stringUtilTest() {
+		Assertions.assertFalse(org.springframework.util.StringUtils.hasText(" "));
+		Assertions.assertTrue(org.junit.platform.commons.util.StringUtils.isBlank(" "));
 	}
 }
