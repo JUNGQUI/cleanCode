@@ -27,28 +27,25 @@ public class RacingUtil {
 						}
 
 						return car;
-					}).collect(Collectors.toList());
+					})
+					.collect(Collectors.toList());
 		}
 
 		return cars;
 	}
 
-	public List<String> calculateWinner(
-			List<String> carNames,
-			List<String> racingResult) {
-
+	public List<String> calculateWinner(List<String> carNames, List<String> racingResult) {
 		List<String> results = new ArrayList<>();
 		int winningCount = 0;
 
 		for (String result : racingResult) {
-			winningCount = Math.max(
-					winningCount, result.length()
-			);
+			winningCount = Math.max(winningCount, result.length());
 		}
 
 		for (int i = 0; i < carNames.size(); i++) {
 			String name = racingResult.get(i).length() == winningCount
-					? carNames.get(i) : null;
+					? carNames.get(i)
+					: null;
 
 			results.add(name);
 		}

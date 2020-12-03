@@ -6,9 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AutoRacing {
-	public void autoRacing(
-			int value,
-			int number) {
+	public void autoRacing(int value, int number) {
 		List<String> cars = new ArrayList<>();
 
 		for (int i = 0; i < value; i++) {
