@@ -1,7 +1,6 @@
 package com.jklee.cleancode.qna.entity;
 
 import java.time.LocalDateTime;
-import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +18,6 @@ public class AbstractEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-//	@Column(nullable = false, updatable = false)
 	@CreatedDate
 	private LocalDateTime createdAt;
 
