@@ -33,6 +33,7 @@ class LottoServiceTest {
 				.build();
 
 		LottoRankResultResponse lottoRankResultResponse = lottoService.checkLottos(lottoResult);
-		System.out.println("J Tag");
+		
+		// TODO Assertions... 이용하여 정상적인 test case 로 완성
 	}
 }
