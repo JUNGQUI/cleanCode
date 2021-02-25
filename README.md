@@ -15,3 +15,18 @@ clean code 를 지향하는 project
 - 규칙 7: 3개 이상의 인스턴스 변수를 가진 클래스를 쓰지 않는다.
 - 규칙 8: 일급 콜렉션을 쓴다.
 - 규칙 9: 게터/세터/프로퍼티를 쓰지 않는다.
+
+# 실적용
+
+- 과도한 들여쓰기는 가독성을 저하시킨다. (co-op 시 유의)
+- 한 줄에 한점만 사용 시 코드가 너무 방대해지는 단점, 오히려 가독성을 떨어뜨린다.
+  - 하나의 로직을 수행 할 경우 1점을 지키지 않는게 좋을 수 있다.
+    - checkString.stream.filter(check -> StringUtils.hasText(check)).collections(Collectors.toList())
+    - checkString.stream
+        .filter(
+          check -> StringUtils.hasText(check))
+        .collections(Collectors.toList())
+        이 경우 보단
+    - checkString.stream                              // object wrapping
+        .filter(check -> StringUtils.hasText(check))  // check 로직이며, 조건은 이렇다를 한줄에 기입
+        .collections(Collectors.toList())             // 결과를 return
